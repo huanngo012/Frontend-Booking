@@ -1,47 +1,59 @@
-.boxDoctorList{
-    padding: 20px var(--padding-x);
-    align-items: stretch;
+.boxDoctorList {
+  padding: 20px var(--padding-x);
+  align-items: stretch;
 }
 
-.doctorCard{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;    
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0 0 10px 5px #888888;
+.doctorCard {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 0 10px 5px #888888;
 }
 
-.doctorCardHeader{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px 20px;
+.doctorCardHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 20px;
 }
 
-.cardContent{
-    padding: 0px 0px 10px 20px;
+.cardContent {
+  padding: 0px 0px 10px 20px;
 }
 
-.btnSchedule{
-    width: 115px;
+.btnSchedule {
+  width: 115px;
 }
 
-.boxBtn{
-    display: flex;
-    align-items: stretch;
-    
+.boxBtn {
+  display: flex;
+  align-items: stretch;
 }
 
-.featuredItem{
-    cursor: pointer;
+.featuredItem {
+  cursor: pointer;
 }
 
 .doctor-img {
-  width: 100px; 
-  height: 100px; 
-  object-fit: cover; 
-  border-radius: 50%; 
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.headerSearch {
+  height: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+  border-radius: 5px;
+  bottom: -25px;
+  width: 100%;
+  max-width: 1130px;
 }

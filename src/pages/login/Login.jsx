@@ -126,16 +126,24 @@ const Login = () => {
     }
   }, [payload]);
   return (
-    <div className="loginPage">
-      <div className="loginBox">
-        <div className="leftLgBox">
+    <Box className="loginPage">
+      <Box className="loginBox">
+        <Box className="leftLgBox">
           <img
             className="loginImg"
             src="https://img.pikbest.com/png-images/20211011/cartoon-man-sitting-at-home-with-laptop_6140580.png!bw700"
             alt=""
           />
-        </div>
-        <div className="rightLgBox">
+          <Typography
+            variant="label1"
+            color="var(--black)"
+            sx={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          >
+            Quay về trang chủ
+          </Typography>
+        </Box>
+        <Box className="rightLgBox">
           <Container>
             <Box height={20} />
             <Box className="avtBox">
@@ -173,34 +181,49 @@ const Login = () => {
               />
             </Box>
             <Stack
-              width="100%"
               direction="row"
-              spacing="8px"
+              justifyContent="space-between"
               alignItems="center"
               marginLeft="3em"
+              marginRight="3em"
               marginTop="10px"
             >
-              <Checkbox
-                size="small"
-                checked={rememberMe}
-                onChange={handleRememberMeChange}
-              ></Checkbox>
-              <Typography variant="body2" sx={{ color: "var(--black)" }}>
-                Ghi nhớ đăng nhập
-              </Typography>
-            </Stack>
-            <Box className="tField">
+              <Stack
+                direction="row"
+                spacing="2px"
+                alignItems="center"
+                marginTop="10px"
+              >
+                <Checkbox
+                  size="small"
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                ></Checkbox>
+                <Typography variant="body2" sx={{ color: "var(--black)" }}>
+                  Ghi nhớ đăng nhập
+                </Typography>
+              </Stack>
               <Typography
                 variant="body2"
                 component="span"
+<<<<<<< HEAD
                 sx={{ cursor: "pointer",  color:'black' }}
+=======
+                sx={{
+                  cursor: "pointer",
+                  color: "var(--black)",
+                  marginLeft: "20px",
+                }}
+>>>>>>> e2b6b8b603f2fd32a9b90abbf2b37d872dc77a01
                 onClick={() => {
                   navigate("/forgot-password");
                 }}
               >
                 Quên mật khẩu
               </Typography>
-            </Box>
+            </Stack>
+
+            <Box className="tField"></Box>
             <Box sx={{ flex: 1 }} className="loginBtnBox">
               <Button
                 type="submit"
@@ -235,9 +258,9 @@ const Login = () => {
               </Stack>
             </Box>
           </Container>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
