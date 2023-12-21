@@ -6,6 +6,10 @@
   font-size: 100%;
 }
 
+body {
+  min-height: 100vh;
+}
+
 @font-face {
   font-family: "Inter";
   src: local("Inter"), url("./fonts/Inter/Inter-Regular.ttf") format("truetype");

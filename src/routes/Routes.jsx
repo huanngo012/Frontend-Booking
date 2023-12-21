@@ -17,7 +17,7 @@ const routes = {
   doctorDetail: "doctor-detail/:id",
   doctorList: "doctor-list",
   bookingsHistory: "booking-history",
-  clinicDetail:'clinic-detail'
+  clinicDetail: "clinic-detail/:id",
 };
 
 export const privateRoutes = [];
@@ -25,7 +25,7 @@ export const privateRoutes = [];
 export const publicRoutes = [
   { path: routes.home, component: Home, layout: DefaultLayout },
   { path: routes.login, component: Login, layout: DefaultLayout },
-  { path: routes.clinicDetail, component: ClinicDetail, layout: Layout2},
+  { path: routes.clinicDetail, component: ClinicDetail, layout: Layout2 },
   { path: routes.register, component: Register, layout: DefaultLayout },
   { path: routes.doctorList, component: DoctorList, layout: DefaultLayout },
   { path: routes.doctorDetail, component: DoctorDetail, layout: Layout2 },

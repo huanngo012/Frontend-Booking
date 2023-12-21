@@ -13,7 +13,7 @@ import { logout } from "../../../store/auth/authSlice";
 const NavBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, current } = useSelector((state) => state.auth);
   useEffect(() => {
     const setTimeoutID = setTimeout(() => {
       if (isLoggedIn) dispatch(getCurrent());
@@ -108,7 +108,7 @@ const NavBar = () => {
         </div>
         <div className="headerListItem">
           <LocalHospitalIcon />
-          <span>Phòng khám</span>
+          <span>Bệnh viện</span>
         </div>
         <div
           className="headerListItem"
@@ -119,6 +119,17 @@ const NavBar = () => {
           <CalendarMonthIcon />
           <span>Lịch khám</span>
         </div>
+        {current?.role === 3 && (
+          <div
+            className="headerListItem"
+            onClick={() => {
+              navigate(`/doctor-detail/${current?._id}`);
+            }}
+          >
+            <CalendarMonthIcon />
+            <span>Thời gian làm việc</span>
+          </div>
+        )}
       </div>
     </>
   );
