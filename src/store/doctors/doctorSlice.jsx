@@ -25,7 +25,7 @@ export const doctorSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(actions.getDoctors.rejected, (state, action) => {
-      state.errorAction = action.message;
+      state.errorAction = action.payload.message;
       state.loading = false;
     });
   },

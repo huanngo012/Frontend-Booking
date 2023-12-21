@@ -13,16 +13,18 @@ import { addBooking } from "../../../store/booking/asyncAction";
 import useNotification from "../../../hooks/useNotification";
 import { useSelector } from "react-redux";
 import { resetBookingStatus } from "../../../store/booking/bookingSlice";
+import { useNavigate } from "react-router-dom";
 
 const DoctorDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { displayNotification } = useNotification();
-  const { loading, errorAction, successAction } = useSelector(
-    (state) => state.booking
-  );
+  const { errorAction, successAction } = useSelector((state) => state.booking);
+  const { current } = useSelector((state) => state.auth);
 
   const [openPopUp, setOpenPopUp] = useState(false);
+  const [openPopUpLogin, setOpenPopUpLogin] = useState(false);
   const [doctor, setDoctor] = useState({});
   const [schedule, setSchedule] = useState({});
   const [date, setDate] = useState(new Date().getTime());
@@ -59,6 +61,17 @@ const DoctorDetail = () => {
 
   const handleComment = () => {};
 
+  const handleCheckLogin = (e, time) => {
+    if (current) {
+      handleOpenConfirmPopup(e);
+      setTime(time);
+    } else {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpenPopUpLogin(true);
+    }
+  };
+
   const handleOpenConfirmPopup = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -69,6 +82,12 @@ const DoctorDetail = () => {
       return;
     }
     setOpenPopUp(false);
+  };
+  const handleCloseConfirmPopUpLogin = (_, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenPopUpLogin(false);
   };
   const handleBooking = () => {
     dispatch(addBooking({ scheduleID: schedule?._id, time }));
@@ -130,10 +149,7 @@ const DoctorDetail = () => {
                   <Button
                     variant={"outlined"}
                     sx={{ width: "150px" }}
-                    onClick={(e) => {
-                      handleOpenConfirmPopup(e);
-                      setTime(el?.time);
-                    }}
+                    onClick={(e) => handleCheckLogin(e, el?.time)}
                   >
                     <Typography variant="label3">
                       {times[el?.time - 1].value}
@@ -213,6 +229,14 @@ const DoctorDetail = () => {
         message={`Giờ: ${times[time - 1]?.value}`}
         enableCancelButton
         onClick={handleBooking}
+      />
+      <Popup
+        open={openPopUpLogin}
+        handleClose={handleCloseConfirmPopUpLogin}
+        title={"Đăng nhập trước khi đặt lịch"}
+        message={`Bạn có muốn đăng nhập không???`}
+        enableCancelButton
+        onClick={() => navigate("/login")}
       />
     </Box>
   );
