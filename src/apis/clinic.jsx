@@ -17,32 +17,3 @@ export const apiCountClinic = () =>
     url: `/clinic/count`,
     method: "get",
   });
-export const apiAddClinic = (data) =>
-  axios({
-    url: "/clinic/",
-    method: "post",
-    data,
-  });
-export const apiUpdateClinic = (id, data) =>
-  axios({
-    url: `/clinic/${id}`,
-    method: "put",
-    data,
-  });
-export const apiDeleteClinic = (id) =>
-  axios({
-    url: `/clinic/${id}`,
-    method: "delete",
-  });
-export const apiAddSpecialtyClinic = (id, data) =>
-  axios({
-    url: `/clinic/specialtys-add/${id}`,
-    method: "put",
-    data,
-  });
-export const apiDeleteSpecialtyClinic = (id, data) =>
-  axios({
-    url: `/clinic/specialtys-delete/${id}`,
-    method: "put",
-    data,
-  });

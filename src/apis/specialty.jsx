@@ -17,20 +17,3 @@ export const apiCountSpecialty = () =>
     url: `/specialty/count`,
     method: "get",
   });
-export const apiAddSpecialty = (data) =>
-  axios({
-    url: "/specialty",
-    method: "post",
-    data,
-  });
-export const apiUpdateSpecialty = (id, data) =>
-  axios({
-    url: `/specialty/${id}`,
-    method: "put",
-    data,
-  });
-export const apiDeleteSpecialty = (id) =>
-  axios({
-    url: `/specialty/${id}`,
-    method: "delete",
-  });

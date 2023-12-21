@@ -28,49 +28,6 @@ export const specialtySlice = createSlice({
       state.errorAction = action.message;
       state.loading = false;
     });
-    //Add user
-    builder.addCase(actions.addSpecialty.pending, (state) => {
-      state.loading = true;
-      state.successAction = null;
-      state.errorAction = null;
-    });
-    builder.addCase(actions.addSpecialty.fulfilled, (state, action) => {
-      state.loading = false;
-      state.successAction = action.payload.message;
-    });
-    builder.addCase(actions.addSpecialty.rejected, (state, action) => {
-      state.errorAction = action.payload.message;
-      state.loading = false;
-    });
-    //Update user
-    builder.addCase(actions.updateSpecialty.pending, (state) => {
-      state.loading = true;
-      state.successAction = null;
-      state.errorAction = null;
-    });
-    builder.addCase(actions.updateSpecialty.fulfilled, (state, action) => {
-      state.loading = false;
-      state.successAction = action.payload.message;
-    });
-    builder.addCase(actions.updateSpecialty.rejected, (state, action) => {
-      state.errorAction = action.payload.message;
-      state.loading = false;
-    });
-    //Delete user
-    builder.addCase(actions.deleteSpecialty.pending, (state) => {
-      state.loading = true;
-      state.successAction = null;
-      state.errorAction = null;
-    });
-    builder.addCase(actions.deleteSpecialty.fulfilled, (state, action) => {
-      state.loading = false;
-      state.successAction = action.payload.message;
-      state.totalItem = state.totalItem - 1;
-    });
-    builder.addCase(actions.deleteSpecialty.rejected, (state, action) => {
-      state.errorAction = action.payload.message;
-      state.loading = false;
-    });
   },
 });
 
