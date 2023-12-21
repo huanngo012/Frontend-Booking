@@ -1,0 +1,84 @@
+.doctorDetail {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--padding-x);
+}
+
+.doctorInfor {
+  display: flex;
+  flex-direction: row;
+  padding: 30px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.doctorImgBox {
+  position: relative;
+  flex-direction: column;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.doctorImg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.doctorDescription {
+  flex: 8;
+  width: 1024px;
+  max-width: 100%;
+  position: relative;
+  text-align: start;
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 50px;
+  border-right: 1px solid black;
+  flex: 1;
+}
+
+.datePicker {
+  padding-bottom: 10px;
+}
+
+.doctorSchedule {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  width: 100%;
+}
+
+.address {
+  padding-left: 50px;
+  flex: 1;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.boxSchedule {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.boxBtn {
+  display: flex;
+  flex-direction: row;
+}
+
+.btnSchedule {
+  margin: 10px 10px 0px 0px;
+}

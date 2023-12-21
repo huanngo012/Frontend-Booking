@@ -1,0 +1,68 @@
+.loginPage {
+  background-image: url("https://cdn.bookingcare.vn/fo/w1920/2023/11/01/140311-background5.png");
+  background-size: cover;
+  height: 100vh;
+  color: #f5f5f5;
+}
+
+.loginBox {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 70%;
+  background-color: white;
+  box-shadow: 0 0 10px 5px #888888;
+}
+
+.leftLgBox {
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+.rightLgBox {
+  flex: 1;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loginImg {
+  width: 100%;
+  object-fit: cover;
+  background-size: cover;
+  height: 63vh;
+  color: #f5f5f5;
+}
+
+.tField {
+  margin-top: 20px;
+  margin-left: 3em;
+  margin-right: 3em;
+  color: black;
+}
+
+.loginBtn {
+  background-color: #ff9a01;
+  color: black;
+  margin-top: 10px;
+  border-radius: 30px;
+  min-width: 170px;
+}
+
+.loginBtnBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 150px;
+}
+
+.avtBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,55 @@
+.navbar {
+  height: 50px;
+  background-color: var(--blue-400);
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.navContainer {
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px var(--padding-x);
+}
+
+.navTitle {
+  cursor: pointer;
+  color: white;
+}
+
+.logo {
+  font-weight: 500;
+}
+
+.navButton {
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.navbarList {
+  display: flex;
+  background-color: var(--blue-400);
+  color: white;
+  justify-content: center;
+  position: relative;
+  gap: 40px;
+  padding: 20px var(--padding-x);
+}
+
+.headerListItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.headerListItem.active {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 20px;
+}
