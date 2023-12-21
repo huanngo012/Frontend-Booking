@@ -156,8 +156,6 @@ const Login = () => {
                 error={Boolean(emailError)}
                 helperText={emailError}
                 autoComplete="email"
-                InputProps={{ style: { color: "black" } }}
-                InputLabelProps={{ style: { color: "black" } }}
               />
             </Box>
             <Box className="tField">
@@ -172,8 +170,6 @@ const Login = () => {
                 error={Boolean(passwordError)}
                 helperText={passwordError}
                 onChange={handlePasswordChange}
-                InputProps={{ style: { color: "black" } }}
-                InputLabelProps={{ style: { color: "black" } }}
               />
             </Box>
             <Stack
@@ -197,7 +193,7 @@ const Login = () => {
               <Typography
                 variant="body2"
                 component="span"
-                sx={{ cursor: "pointer" }}
+                sx={{ cursor: "pointer",  color:'black' }}
                 onClick={() => {
                   navigate("/forgot-password");
                 }}
