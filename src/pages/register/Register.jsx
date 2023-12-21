@@ -10,48 +10,45 @@ import {
 } from '@mui/material';
 import './style.scss';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../store/users/asyncAction';
 // import { AppDispatch, RootState } from '../../redux/store/store';
 // import { register } from '../../redux/slice/auth/authSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const [gender, setGender] = useState('MALE');
-  // const [error, setError] = useState<string | null>(null);
-  // const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-  //     setGender(event.target.value as string);
-  // };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [gender, setGender] = useState('MALE');
 
-  // const handleRegister = () => {
-  //     // Lấy giá trị từ các trường nhập liệu
-  //     const fullName = (document.getElementById('fullName') as HTMLInputElement)?.value || '';
-  //     const email = (document.getElementById('email') as HTMLInputElement)?.value || '';
-  //     const password = (document.getElementById('password') as HTMLInputElement)?.value || '';
-  //     const mobile = (document.getElementById('mobile') as HTMLInputElement)?.value || '';
-  //     if (!fullName || !email || !password || !mobile) {
-  //         // Sử dụng toast để hiển thị thông báo lỗi
-  //         toast.error('Vui lòng nhập đầy đủ thông tin');
-  //         return;
-  //     }
-  //     try {
-  //         dispatch(register(email, password, fullName, mobile, gender));
-  //         toast.success('Đăng ký thành công!');
-  //         navigate('/login');
-  //     } catch (error) {
-  //         // Sử dụng toast để hiển thị thông báo lỗi từ action
-  //         toast.error(String(error));
-  //     }
+  const handleGenderChange = (event) => {
+      setGender(event.target.value);
+  };
 
-  // };
+  const handleRegister = () => {
+      // Lấy giá trị từ các trường nhập liệu
+      const fullName = (document.getElementById('fullName'))?.value || '';
+      const email = (document.getElementById('email'))?.value || '';
+      const password = (document.getElementById('password'))?.value || '';
+      const mobile = (document.getElementById('mobile'))?.value || '';
+      console.log(fullName, email, password, mobile, gender);
+      if (!fullName || !email || !password || !mobile) {
+          // Sử dụng toast để hiển thị thông báo lỗi
+          return;
+      }
+      try {
+          dispatch(register(email, password, fullName, mobile, gender));
+          //navigate('/login');
+      } catch (error) {
+          // Sử dụng toast để hiển thị thông báo lỗi từ action
+      }
+  };
 
   return (
     <Box className="registerPage">
-      <ToastContainer position="top-right" autoClose={3000} />
       <Box className="registerBox">
         <Box className="leftRgBox">
           <Box
@@ -81,8 +78,6 @@ const Register = () => {
                   label="Họ và tên"
                   name="fullName"
                   autoComplete="fullName"
-                  InputProps={{ style: { color: 'white' } }}
-                  InputLabelProps={{ style: { color: 'white' } }}
                 />
               </Box>
               <Box className="tField">
@@ -93,8 +88,6 @@ const Register = () => {
                   label="Email"
                   name="email"
                   autoComplete="email"
-                  InputProps={{ style: { color: 'white' } }}
-                  InputLabelProps={{ style: { color: 'white' } }}
                 />
               </Box>
               <Box className="tField">
@@ -106,8 +99,6 @@ const Register = () => {
                   type="password"
                   name="password"
                   autoComplete="password"
-                  InputProps={{ style: { color: 'white' } }}
-                  InputLabelProps={{ style: { color: 'white' } }}
                 />
               </Box>
               <Box className="tField">
@@ -118,8 +109,6 @@ const Register = () => {
                   label="Số điện thoại"
                   name="mobile"
                   autoComplete="mobile"
-                  InputProps={{ style: { color: 'white' } }}
-                  InputLabelProps={{ style: { color: 'white' } }}
                 />
               </Box>
               <Box className="tField">
@@ -127,11 +116,9 @@ const Register = () => {
                   select
                   label="Giới tính"
                   fullWidth
-                  // value={gender}
-                  // onChange={handleGenderChange}
+                  value={gender}
+                  onChange={handleGenderChange}
                   variant="outlined"
-                  InputProps={{ style: { color: 'white' } }}
-                  InputLabelProps={{ style: { color: 'white' } }}
                 >
                   <MenuItem value="MALE">Nam</MenuItem>
                   <MenuItem value="FEMALE">Nữ</MenuItem>
@@ -139,7 +126,7 @@ const Register = () => {
               </Box>
               <Box className="registerBtnBox">
                 <Button
-                  //onClick={handleRegister}
+                  onClick={handleRegister}
                   type="submit"
                   variant="outlined"
                   fullWidth
@@ -154,15 +141,14 @@ const Register = () => {
                   <Typography
                     variant="body2"
                     component="span"
-                    //style={{marginTop: '10px'}}
                   >
                     Bạn đã có tài khoản?{' '}
                     <Typography
                       variant="body2"
                       component="span"
-                      // onClick={() => {
-                      //   navigate('/login');
-                      // }}
+                      onClick={() => {
+                        navigate('/login');
+                      }}
                       sx={{ cursor: 'pointer' }}
                     >
                       Đăng nhập ngay
@@ -178,13 +164,3 @@ const Register = () => {
   );
 };
 export default Register;
-
-// import React from 'react'
-
-// const Register = () => {
-//   return (
-//     <Box>Register</Box>
-//   )
-// }
-
-// export default Register

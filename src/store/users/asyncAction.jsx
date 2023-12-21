@@ -11,30 +11,11 @@ export const getUsers = createAsyncThunk(
     return response;
   }
 );
-export const addUer = createAsyncThunk(
-  "user/addUer",
+
+export const register = createAsyncThunk(
+  "user/register",
   async (data, { rejectWithValue }) => {
-    const response = await apis.apiAddUser(data);
-    if (!response.success) {
-      return rejectWithValue(response);
-    }
-    return response;
-  }
-);
-export const updateUser = createAsyncThunk(
-  "user/updateUser",
-  async ({ id, data }, { rejectWithValue }) => {
-    const response = await apis.apiUpdateUser(id, data);
-    if (!response.success) {
-      return rejectWithValue(response);
-    }
-    return response;
-  }
-);
-export const deleteUser = createAsyncThunk(
-  "user/deleteUser",
-  async (data, { rejectWithValue }) => {
-    const response = await apis.apiDeleteUser(data);
+    const response = await apis.apiRegister(data);
     if (!response.success) {
       return rejectWithValue(response);
     }

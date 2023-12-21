@@ -28,46 +28,17 @@ export const userSlice = createSlice({
       state.errorAction = action.message;
       state.loading = false;
     });
-    //Add user
-    builder.addCase(actions.addUer.pending, (state) => {
+    //Register
+    builder.addCase(actions.register.pending, (state) => {
       state.loading = true;
       state.successAction = null;
       state.errorAction = null;
     });
-    builder.addCase(actions.addUer.fulfilled, (state, action) => {
+    builder.addCase(actions.register.fulfilled, (state, action) => {
       state.loading = false;
       state.successAction = action.payload.message;
     });
-    builder.addCase(actions.addUer.rejected, (state, action) => {
-      state.errorAction = action.payload.message;
-      state.loading = false;
-    });
-    //Update user
-    builder.addCase(actions.updateUser.pending, (state) => {
-      state.loading = true;
-      state.successAction = null;
-      state.errorAction = null;
-    });
-    builder.addCase(actions.updateUser.fulfilled, (state, action) => {
-      state.loading = false;
-      state.successAction = action.payload.message;
-    });
-    builder.addCase(actions.updateUser.rejected, (state, action) => {
-      state.errorAction = action.payload.message;
-      state.loading = false;
-    });
-    //Delete user
-    builder.addCase(actions.deleteUser.pending, (state) => {
-      state.loading = true;
-      state.successAction = null;
-      state.errorAction = null;
-    });
-    builder.addCase(actions.deleteUser.fulfilled, (state, action) => {
-      state.loading = false;
-      state.successAction = action.payload.message;
-      state.totalItem = state.totalItem - 1;
-    });
-    builder.addCase(actions.deleteUser.rejected, (state, action) => {
+    builder.addCase(actions.register.rejected, (state, action) => {
       state.errorAction = action.payload.message;
       state.loading = false;
     });
