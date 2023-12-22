@@ -8,18 +8,24 @@ import {
   Helmet,
   Popup,
 } from "../../components/index";
-import { bookingColumns } from "../../utils/datatablesource";
+import {
+  bookingColumns,
+  bookingDoctorColumns,
+} from "../../utils/datatablesource";
 import { times } from "../../utils/contants";
 import useNotification from "../../hooks/useNotification";
 import { Typography, Box, Button, Grid } from "@mui/material";
 import { resetBookingStatus } from "../../store/booking/bookingSlice";
 import DetailBooking from "./DetailBooking";
 import { DataGrid } from "@mui/x-data-grid";
+import { useNavigate } from "react-router-dom";
 
 const BookingHistory = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { bookings, totalItem, errorAction, successAction, loading } =
     useSelector((state) => state.booking);
+  const { current } = useSelector((state) => state.auth);
 
   const { displayNotification } = useNotification();
 
@@ -37,11 +43,12 @@ const BookingHistory = () => {
           return {
             id: el._id,
             idRow: index + 1,
+            namePatient: el?.patientID?.fullName,
+            gender: el?.patientID?.gender,
             nameClinic: el?.scheduleID?.doctorID?.clinicID?.name,
             addressClinic: el?.scheduleID?.doctorID?.clinicID?.address,
             nameSpecialty: el?.scheduleID?.doctorID?.specialtyID?.name,
             nameDoctor: el?.scheduleID?.doctorID?._id?.fullName,
-
             status: el?.status,
             date: moment(el?.scheduleID.date).format("DD/MM/yyyy"),
             description: el?.description,
@@ -102,6 +109,45 @@ const BookingHistory = () => {
       },
     },
   ];
+  const actionDoctorColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      headerAlign: "center",
+      width: 300,
+      align: "center",
+      renderHeader(params) {
+        let headerName = params.colDef.headerName;
+        return (
+          <Typography variant="label3" color="var(--text-primary)">
+            {headerName}
+          </Typography>
+        );
+      },
+      renderCell: (params) => {
+        return (
+          <Box sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
+            {params.row?.status !== "Đã hủy" && (
+              <>
+                <DetailBooking data={params.row} />
+                <Button
+                  variant="contained"
+                  color="red"
+                  onClick={(e) => {
+                    handleOpenConfirmPopup(e);
+                    setId(params.row.id);
+                    setTime(params.row.time);
+                  }}
+                >
+                  <Typography variant="button1">Hủy</Typography>
+                </Button>
+              </>
+            )}
+          </Box>
+        );
+      },
+    },
+  ];
 
   const [openPopUp, setOpenPopUp] = useState(false);
 
@@ -134,60 +180,82 @@ const BookingHistory = () => {
 
   return (
     <Helmet title="Lịch sử">
-      <Grid container sx={{ padding: "0px 32px" }}>
-        <Box
-          className="card-data-header"
-          sx={{
-            width: "100%",
-            flexDirection: "row",
-            border: "var(--border-color)",
-            padding: "24px 0",
-            justifyContent: "space-between",
-          }}
-        >
-          <Box>
-            <Typography variant="h5">Danh sách lịch khám bệnh</Typography>
+      {current ? (
+        <Grid container sx={{ padding: "0px 32px" }}>
+          <Box
+            className="card-data-header"
+            sx={{
+              width: "100%",
+              flexDirection: "row",
+              border: "var(--border-color)",
+              padding: "24px 0",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box>
+              <Typography variant="h5">Danh sách lịch khám bệnh</Typography>
+            </Box>
           </Box>
-        </Box>
-        <Box sx={{ height: "100%", width: "100%" }}>
-          {loading ? (
-            <CustomSkeleton
-              customKey={`skeleton__card-notify`}
-              variant="card-notify"
-            />
-          ) : (
-            <DataGrid
-              slots={
-                rows?.length === 0
-                  ? {
-                      columnHeaders: () => null,
-                      noRowsOverlay: () => (
-                        <EmptyPage
-                          title="Không tìm thấy lịch khám"
-                          message="Vui lòng đặt lịch khám"
-                        />
-                      ),
-                    }
-                  : {}
-              }
-              columns={bookingColumns.concat(actionColumn)}
-              rows={rows}
-              pagination={rows?.length > 0 ? true : false}
-              totalRow={totalItem}
-              height={185}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 5,
+          <Box sx={{ height: "100%", width: "100%" }}>
+            {loading ? (
+              <CustomSkeleton
+                customKey={`skeleton__card-notify`}
+                variant="card-notify"
+              />
+            ) : (
+              <DataGrid
+                slots={
+                  rows?.length === 0
+                    ? {
+                        columnHeaders: () => null,
+                        noRowsOverlay: () => (
+                          <EmptyPage
+                            title="Không tìm thấy lịch khám"
+                            message="Vui lòng đặt lịch khám"
+                          />
+                        ),
+                      }
+                    : {}
+                }
+                columns={
+                  current?.role === 4
+                    ? bookingColumns.concat(actionColumn)
+                    : bookingDoctorColumns.concat(actionDoctorColumn)
+                }
+                rows={rows}
+                pagination={rows?.length > 0 ? true : false}
+                totalRow={totalItem}
+                height={185}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 5,
+                    },
                   },
-                },
-              }}
-              pageSizeOptions={[5]}
-              disableRowSelectionOnClick
-            />
-          )}
+                }}
+                pageSizeOptions={[5]}
+                disableRowSelectionOnClick
+              />
+            )}
+          </Box>
+        </Grid>
+      ) : (
+        <Box
+          width="100%"
+          display="flex"
+          justifyContent="center"
+          marginTop="50px"
+        >
+          <Button
+            variant="contained"
+            onClick={() => {
+              navigate(`/login`);
+            }}
+          >
+            Đăng nhập
+          </Button>
         </Box>
-      </Grid>
+      )}
       <Popup
         open={openPopUp}
         handleClose={handleCloseConfirmPopUp}

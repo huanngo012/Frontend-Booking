@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Typography, TextField } from "@mui/material";
 import "./style.scss";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,9 +10,8 @@ import { formatMoney } from "../../../utils/helper";
 import { times } from "../../../utils/contants";
 import { addBooking } from "../../../store/booking/asyncAction";
 import useNotification from "../../../hooks/useNotification";
-import { useSelector } from "react-redux";
 import { resetBookingStatus } from "../../../store/booking/bookingSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DoctorDetail = () => {
   const { id } = useParams();
@@ -63,8 +61,16 @@ const DoctorDetail = () => {
 
   const handleCheckLogin = (e, time) => {
     if (current) {
-      handleOpenConfirmPopup(e);
-      setTime(time);
+      if (current?.role === 4) {
+        handleOpenConfirmPopup(e);
+        setTime(time);
+      } else {
+        displayNotification({
+          message: "Bạn không thể đặt lịch!!!",
+          severity: "error",
+          title: "Thất bại",
+        });
+      }
     } else {
       e.preventDefault();
       e.stopPropagation();

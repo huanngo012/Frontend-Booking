@@ -31,3 +31,14 @@ export const cancelBooking = createAsyncThunk(
     return response;
   }
 );
+export const updateBooking = createAsyncThunk(
+  "booking/updateBooking",
+  async ({ id, data }, { rejectWithValue }) => {
+    const response = await apis.apiUpdateBooking(id, data);
+    if (!response.success) {
+      console.log(response);
+      return rejectWithValue(response);
+    }
+    return response;
+  }
+);

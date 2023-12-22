@@ -112,7 +112,6 @@ const Login = () => {
             current: rs.data,
           })
         );
-        console.log("aa");
         navigate("/");
       } else {
         Swal.fire(
@@ -125,6 +124,7 @@ const Login = () => {
       Swal.fire("Đăng nhập thất bại", rs.message, "error");
     }
   }, [payload]);
+
   return (
     <Box className="loginPage">
       <Box className="loginBox">
@@ -150,7 +150,7 @@ const Login = () => {
               <Avatar className="avatar">
                 <LockPersonIcon />
               </Avatar>
-              <Typography component="h2" variant="h4" color="black">
+              <Typography component="h2" variant="h4">
                 Đăng nhập
               </Typography>
             </Box>
@@ -184,9 +184,7 @@ const Login = () => {
               direction="row"
               justifyContent="space-between"
               alignItems="center"
-              marginLeft="3em"
-              marginRight="3em"
-              marginTop="10px"
+              margin="20px 0"
             >
               <Stack
                 direction="row"
@@ -199,16 +197,13 @@ const Login = () => {
                   checked={rememberMe}
                   onChange={handleRememberMeChange}
                 ></Checkbox>
-                <Typography variant="body2" sx={{ color: "var(--black)" }}>
-                  Ghi nhớ đăng nhập
-                </Typography>
+                <Typography variant="body2">Ghi nhớ đăng nhập</Typography>
               </Stack>
               <Typography
                 variant="body2"
                 component="span"
                 sx={{
                   cursor: "pointer",
-                  color: "var(--black)",
                   marginLeft: "20px",
                 }}
                 onClick={() => {
@@ -219,19 +214,16 @@ const Login = () => {
               </Typography>
             </Stack>
 
-            <Box className="tField"></Box>
-            <Box sx={{ flex: 1 }} className="loginBtnBox">
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                className="loginBtn"
-                size="medium"
-                onClick={handlerSubmit}
-              >
-                Đăng nhập
-              </Button>
-            </Box>
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              className="loginBtn"
+              size="medium"
+              onClick={handlerSubmit}
+            >
+              Đăng nhập
+            </Button>
             <Box sx={{ flex: 1 }}>
               <Stack direction="row" spacing={2} className="tField">
                 <Typography

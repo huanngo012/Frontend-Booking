@@ -56,6 +56,20 @@ export const bookingSlice = createSlice({
       state.errorAction = action.payload.message;
       state.loading = false;
     });
+    //Update Booking
+    builder.addCase(actions.updateBooking.pending, (state) => {
+      state.loading = true;
+      state.successAction = null;
+      state.errorAction = null;
+    });
+    builder.addCase(actions.updateBooking.fulfilled, (state, action) => {
+      state.loading = false;
+      state.successAction = action.payload.message;
+    });
+    builder.addCase(actions.updateBooking.rejected, (state, action) => {
+      state.errorAction = action.payload.message;
+      state.loading = false;
+    });
   },
 });
 

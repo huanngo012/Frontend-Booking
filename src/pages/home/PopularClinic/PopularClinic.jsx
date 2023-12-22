@@ -41,7 +41,7 @@ const PopularClinic = () => {
             }}
           >
             <Link
-              to={`/clinic/${el?._id}`}
+              to={`/clinic-detail/${el?._id}`}
               style={{
                 width: "100%",
                 borderWidth: "1px",

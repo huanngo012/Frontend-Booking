@@ -1,81 +1,76 @@
-.registerPage{
-    background-image: url('https://cdn.bookingcare.vn/fo/w1920/2023/11/01/140311-background5.png');
-    background-size: cover;
-    height: 100vh;
-    color: #F5F5F5;
+.registerPage {
+  background-image: url("https://cdn.bookingcare.vn/fo/w1920/2023/11/01/140311-background5.png");
+  background-size: cover;
+  height: 100vh;
+  color: #f5f5f5;
 }
 
-.registerBox{
-    display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 75%;
-    height: 85%;
-    background-color: white;
-    box-shadow: 0 0 10px 5px #888888;
+.registerBox {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 85%;
+  background-color: white;
+  box-shadow: 0 0 10px 5px #888888;
 }
 
-.leftRgBox{
-    flex: 1;
-    display: flex;
-    height: 100%;
+.leftRgBox {
+  flex: 1;
+  display: flex;
+  height: 100%;
 }
 
-.rightRgBox{
-    flex: 1;
-    background-color: #3B33D5;
+.rightRgBox {
+  flex: 1;
+  background-color: #3b33d5;
 }
 
-.registerImg{
-    width: 100%;
-    object-fit: cover;
-    background-size: cover;
-    height: 63vh;
-    color: #F5F5F5;
+.registerImg {
+  width: 100%;
+  object-fit: cover;
+  background-size: cover;
+  height: 63vh;
+  color: #f5f5f5;
 }
 
-.avtBox{
-    top: 50%;
-    left: 37%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.avtBox {
+  top: 50%;
+  left: 37%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.avatar{
-    background-color: #F5F5F5;
-    margin-bottom: 4px;
-    color: black;
+.avatar {
+  background-color: #f5f5f5;
+  margin-bottom: 4px;
+  color: black;
 }
 
-.tField{
-    margin-left: 3em;
-    margin-right: 3em;
+.genderBox {
+  margin-top: 10px;
+  margin-left: 3em;
+  margin-right: 3em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.genderBox{
-    margin-top: 10px;
-    margin-left: 3em;
-    margin-right: 3em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+.registerBtn {
+  background-color: #ff9a01;
+  color: white;
+  margin-top: 10px;
+  border-radius: 30px;
+  min-width: 170px;
 }
 
-.registerBtn{
-    background-color: #FF9A01;
-    color: white;
-    margin-top: 10px;
-    border-radius: 30px;
-    min-width: 170px;
-}
-
-.registerBtnBox{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px 150px;
+.registerBtnBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 150px;
 }
