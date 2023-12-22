@@ -36,6 +36,7 @@ import cancelIcon from "../assets/svg/cancelIcon.svg";
 import errorRoundedIcon from "../assets/svg/errorRoundedIcon.svg";
 import deleteIcon from "../assets/svg/deleteIcon.svg";
 import addIcon from "../assets/svg/addIcon.svg";
+import doctorImage from '../assets/img/doctorImage.jpg'
 import { RiPhoneFill, RiTruckFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import {

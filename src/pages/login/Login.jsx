@@ -206,15 +206,11 @@ const Login = () => {
               <Typography
                 variant="body2"
                 component="span"
-<<<<<<< HEAD
-                sx={{ cursor: "pointer",  color:'black' }}
-=======
                 sx={{
                   cursor: "pointer",
                   color: "var(--black)",
                   marginLeft: "20px",
                 }}
->>>>>>> e2b6b8b603f2fd32a9b90abbf2b37d872dc77a01
                 onClick={() => {
                   navigate("/forgot-password");
                 }}

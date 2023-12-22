@@ -14,10 +14,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../store/users/asyncAction';
-// import { AppDispatch, RootState } from '../../redux/store/store';
-// import { register } from '../../redux/slice/auth/authSlice';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const navigate = useNavigate();
