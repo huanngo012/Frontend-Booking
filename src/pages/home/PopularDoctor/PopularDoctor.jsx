@@ -84,10 +84,18 @@ const PopularDoctor = () => {
                   width: "100%",
                 }}
               >
-                <Typography variant="body1" color="black" className="truncate">
+                <Typography
+                  variant="body1"
+                  color="black"
+                  className="truncate_2"
+                >
                   {el?.clinicID?.name} - {el?.specialtyID?.name}
                 </Typography>
-                <Typography variant="label1" color="black" className="truncate">
+                <Typography
+                  variant="label1"
+                  color="black"
+                  className="truncate_2"
+                >
                   {el?._id?.fullName}
                 </Typography>
                 <Box component="span" sx={{ display: "flex", height: "16px" }}>

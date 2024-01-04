@@ -66,7 +66,7 @@ const PopularClinic = () => {
                     width: "100%",
                     height: "200px",
                     borderRadius: "10px",
-                    objectFit: "cover",
+                    objectFit: "contain",
                   }}
                 />
               </Box>
@@ -86,7 +86,7 @@ const PopularClinic = () => {
                 <Typography
                   variant="body1"
                   color="black"
-                  className="truncate"
+                  className="truncate_2"
                   sx={{ height: "56px" }}
                 >
                   {el?.address?.detail ? `${el?.address?.detail},` : ""}{" "}

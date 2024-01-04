@@ -17,6 +17,7 @@ import CryptoJS from "crypto-js";
 import { apiLogin } from "../../apis/user";
 import { login } from "../../store/auth/authSlice";
 import Swal from "sweetalert2";
+import { Helmet } from "../../components";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -126,129 +127,131 @@ const Login = () => {
   }, [payload]);
 
   return (
-    <Box className="loginPage">
-      <Box className="loginBox">
-        <Box className="leftLgBox">
-          <img
-            className="loginImg"
-            src="https://img.pikbest.com/png-images/20211011/cartoon-man-sitting-at-home-with-laptop_6140580.png!bw700"
-            alt=""
-          />
-          <Typography
-            variant="label1"
-            color="var(--black)"
-            sx={{ cursor: "pointer" }}
-            onClick={() => navigate("/")}
-          >
-            Quay về trang chủ
-          </Typography>
-        </Box>
-        <Box className="rightLgBox">
-          <Container>
-            <Box height={20} />
-            <Box className="avtBox">
-              <Avatar className="avatar">
-                <LockPersonIcon />
-              </Avatar>
-              <Typography component="h2" variant="h4">
-                Đăng nhập
-              </Typography>
-            </Box>
-            <Box className="tField">
-              <TextField
-                required
-                fullWidth
-                label="Tài khoản"
-                value={payload.email}
-                onChange={handleEmailChange}
-                error={Boolean(emailError)}
-                helperText={emailError}
-                autoComplete="email"
-              />
-            </Box>
-            <Box className="tField">
-              <TextField
-                required
-                fullWidth
-                id="password"
-                label="Mật khẩu"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                value={payload.password}
-                error={Boolean(passwordError)}
-                helperText={passwordError}
-                onChange={handlePasswordChange}
-              />
-            </Box>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              margin="20px 0"
+    <Helmet title="Đăng nhập">
+      <Box className="loginPage">
+        <Box className="loginBox">
+          <Box className="leftLgBox">
+            <img
+              className="loginImg"
+              src="https://img.pikbest.com/png-images/20211011/cartoon-man-sitting-at-home-with-laptop_6140580.png!bw700"
+              alt=""
+            />
+            <Typography
+              variant="label1"
+              color="var(--black)"
+              sx={{ cursor: "pointer" }}
+              onClick={() => navigate("/")}
             >
+              Quay về trang chủ
+            </Typography>
+          </Box>
+          <Box className="rightLgBox">
+            <Container>
+              <Box height={20} />
+              <Box className="avtBox">
+                <Avatar className="avatar">
+                  <LockPersonIcon />
+                </Avatar>
+                <Typography component="h2" variant="h4">
+                  Đăng nhập
+                </Typography>
+              </Box>
+              <Box className="tField">
+                <TextField
+                  required
+                  fullWidth
+                  label="Tài khoản"
+                  value={payload.email}
+                  onChange={handleEmailChange}
+                  error={Boolean(emailError)}
+                  helperText={emailError}
+                  autoComplete="email"
+                />
+              </Box>
+              <Box className="tField">
+                <TextField
+                  required
+                  fullWidth
+                  id="password"
+                  label="Mật khẩu"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  value={payload.password}
+                  error={Boolean(passwordError)}
+                  helperText={passwordError}
+                  onChange={handlePasswordChange}
+                />
+              </Box>
               <Stack
                 direction="row"
-                spacing="2px"
+                justifyContent="space-between"
                 alignItems="center"
-                marginTop="10px"
+                margin="20px 0"
               >
-                <Checkbox
-                  size="small"
-                  checked={rememberMe}
-                  onChange={handleRememberMeChange}
-                ></Checkbox>
-                <Typography variant="body2">Ghi nhớ đăng nhập</Typography>
-              </Stack>
-              <Typography
-                variant="body2"
-                component="span"
-                sx={{
-                  cursor: "pointer",
-                  marginLeft: "20px",
-                }}
-                onClick={() => {
-                  navigate("/forgot-password");
-                }}
-              >
-                Quên mật khẩu
-              </Typography>
-            </Stack>
-
-            <Button
-              type="submit"
-              variant="contained"
-              fullWidth
-              className="loginBtn"
-              size="medium"
-              onClick={handlerSubmit}
-            >
-              Đăng nhập
-            </Button>
-            <Box sx={{ flex: 1 }}>
-              <Stack direction="row" spacing={2} className="tField">
+                <Stack
+                  direction="row"
+                  spacing="2px"
+                  alignItems="center"
+                  marginTop="10px"
+                >
+                  <Checkbox
+                    size="small"
+                    checked={rememberMe}
+                    onChange={handleRememberMeChange}
+                  ></Checkbox>
+                  <Typography variant="body2">Ghi nhớ đăng nhập</Typography>
+                </Stack>
                 <Typography
                   variant="body2"
                   component="span"
-                  style={{ marginTop: "10px" }}
+                  sx={{
+                    cursor: "pointer",
+                    marginLeft: "20px",
+                  }}
+                  onClick={() => {
+                    navigate("/forgot-password");
+                  }}
                 >
-                  Bạn chưa có tài khoản?{" "}
+                  Quên mật khẩu
+                </Typography>
+              </Stack>
+
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                className="loginBtn"
+                size="medium"
+                onClick={handlerSubmit}
+              >
+                Đăng nhập
+              </Button>
+              <Box sx={{ flex: 1 }}>
+                <Stack direction="row" spacing={2} className="tField">
                   <Typography
                     variant="body2"
                     component="span"
-                    onClick={() => {
-                      navigate("/register");
-                    }}
-                    sx={{ cursor: "pointer" }}
+                    style={{ marginTop: "10px" }}
                   >
-                    Đăng ký ngay
+                    Bạn chưa có tài khoản?{" "}
+                    <Typography
+                      variant="body2"
+                      component="span"
+                      onClick={() => {
+                        navigate("/register");
+                      }}
+                      sx={{ cursor: "pointer" }}
+                    >
+                      Đăng ký ngay
+                    </Typography>
                   </Typography>
-                </Typography>
-              </Stack>
-            </Box>
-          </Container>
+                </Stack>
+              </Box>
+            </Container>
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </Helmet>
   );
 };
 

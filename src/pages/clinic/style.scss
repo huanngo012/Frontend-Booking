@@ -45,8 +45,12 @@
   flex-direction: row;
   align-items: center;
   margin-left: var(--padding-x);
+  gap: 20px;
 }
 
+.doctor-img {
+  width: 100px;
+}
 .doctor-clinic-detail-2 {
   display: flex;
   flex: 1;

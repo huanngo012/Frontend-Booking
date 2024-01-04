@@ -77,7 +77,7 @@ const DetailBooking = ({ data }) => {
                     <Typography
                       variant="body2"
                       dangerouslySetInnerHTML={{ __html: data?.description }}
-                      className="truncate"
+                      className="truncate_2"
                     />
                   ) : (
                     <Typography>Bác sĩ chưa nhận xét</Typography>

@@ -6,10 +6,12 @@ import { publicRoutes } from "./routes/Routes";
 import { Fragment, Suspense } from "react";
 import NotFoundPage from "./pages/notFound/NotFound";
 import Register from "./pages/register/Register";
+import ChatbotCustom from "./components/chatbox/ChatbotCustom";
 
 function App() {
   return (
     <Suspense fallback="..loading">
+      <ChatbotCustom />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

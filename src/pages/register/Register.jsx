@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../store/users/asyncAction";
 import useNotification from "../../hooks/useNotification";
 import { resetUserStatus } from "../../store/users/userSlice";
+import { Helmet } from "../../components";
 // import { AppDispatch, RootState } from '../../redux/store/store';
 // import { register } from '../../redux/slice/auth/authSlice';
 // import { ToastContainer, toast } from 'react-toastify';
@@ -62,123 +63,125 @@ const Register = () => {
   }, [successAction, errorAction]);
 
   return (
-    <Box className="registerPage">
-      <Box className="registerBox">
-        <Box className="leftRgBox">
-          <Box
-            component="img"
-            className="registerImg"
-            src="https://img.pikbest.com/png-images/20211011/cartoon-man-sitting-at-home-with-laptop_6140580.png!bw700"
-            alt=""
-          />
-        </Box>
-        <Box className="rightRgBox">
-          <Container>
-            <Box height={10} />
-            <Box className="avtBox">
-              <Avatar className="avatar">
-                <LockPersonIcon />
-              </Avatar>
-              <Typography component="h2" variant="h4">
-                Đăng ký tài khoản
-              </Typography>
-            </Box>
-            <Stack direction="column" gap="20px">
-              <Stack>
-                <TextField
-                  required
-                  fullWidth
-                  id="fullName"
-                  label="Họ và tên"
-                  name="fullName"
-                  autoComplete="fullName"
-                />
-              </Stack>
-              <Box>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                />
+    <Helmet title="Đăng ký">
+      <Box className="registerPage">
+        <Box className="registerBox">
+          <Box className="leftRgBox">
+            <Box
+              component="img"
+              className="registerImg"
+              src="https://img.pikbest.com/png-images/20211011/cartoon-man-sitting-at-home-with-laptop_6140580.png!bw700"
+              alt=""
+            />
+          </Box>
+          <Box className="rightRgBox">
+            <Container>
+              <Box height={10} />
+              <Box className="avtBox">
+                <Avatar className="avatar">
+                  <LockPersonIcon />
+                </Avatar>
+                <Typography component="h2" variant="h4">
+                  Đăng ký tài khoản
+                </Typography>
               </Box>
-              <Box>
-                <TextField
-                  required
-                  fullWidth
-                  id="password"
-                  label="Mật khẩu"
-                  type="password"
-                  name="password"
-                  autoComplete="password"
-                />
-              </Box>
-              <Stack direction="row" gap="10px" alignItems="center">
-                <TextField
-                  required
-                  fullWidth
-                  id="mobile"
-                  label="Số điện thoại"
-                  name="mobile"
-                  autoComplete="mobile"
-                />
+              <Stack direction="column" gap="20px">
+                <Stack>
+                  <TextField
+                    required
+                    fullWidth
+                    id="fullName"
+                    label="Họ và tên"
+                    name="fullName"
+                    autoComplete="fullName"
+                  />
+                </Stack>
                 <Box>
-                  <Typography variant="label1">Giới tính</Typography>
-                  <Select
-                    select
-                    label="Giới tính"
-                    value={gender}
-                    onChange={handleGenderChange}
-                    variant="outlined"
-                    sx={{
-                      height: "40px",
-                      backgroundColor: "white",
-                      borderRadius: "6px",
-                      marginTop: "4px",
-                    }}
-                    size="small"
-                  >
-                    <MenuItem value="MALE">Nam</MenuItem>
-                    <MenuItem value="FEMALE">Nữ</MenuItem>
-                  </Select>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Box>
+                <Box>
+                  <TextField
+                    required
+                    fullWidth
+                    id="password"
+                    label="Mật khẩu"
+                    type="password"
+                    name="password"
+                    autoComplete="password"
+                  />
+                </Box>
+                <Stack direction="row" gap="10px" alignItems="center">
+                  <TextField
+                    required
+                    fullWidth
+                    id="mobile"
+                    label="Số điện thoại"
+                    name="mobile"
+                    autoComplete="mobile"
+                  />
+                  <Box>
+                    <Typography variant="label1">Giới tính</Typography>
+                    <Select
+                      select
+                      label="Giới tính"
+                      value={gender}
+                      onChange={handleGenderChange}
+                      variant="outlined"
+                      sx={{
+                        height: "40px",
+                        backgroundColor: "white",
+                        borderRadius: "6px",
+                        marginTop: "4px",
+                      }}
+                      size="small"
+                    >
+                      <MenuItem value="MALE">Nam</MenuItem>
+                      <MenuItem value="FEMALE">Nữ</MenuItem>
+                    </Select>
+                  </Box>
+                </Stack>
+
+                <Button
+                  onClick={handleRegister}
+                  type="submit"
+                  variant="outlined"
+                  fullWidth
+                  className="registerBtn"
+                  size="medium"
+                  sx={{ width: "100%" }}
+                >
+                  Đăng ký
+                </Button>
+                <Box sx={{ flex: 1 }}>
+                  <Stack direction="row" spacing={2}>
+                    <Typography variant="body2" component="span">
+                      Bạn đã có tài khoản?{" "}
+                      <Typography
+                        variant="body2"
+                        component="span"
+                        onClick={() => {
+                          navigate("/login");
+                        }}
+                        sx={{ cursor: "pointer" }}
+                      >
+                        Đăng nhập ngay
+                      </Typography>
+                    </Typography>
+                  </Stack>
                 </Box>
               </Stack>
-
-              <Button
-                onClick={handleRegister}
-                type="submit"
-                variant="outlined"
-                fullWidth
-                className="registerBtn"
-                size="medium"
-                sx={{ width: "100%" }}
-              >
-                Đăng ký
-              </Button>
-              <Box sx={{ flex: 1 }}>
-                <Stack direction="row" spacing={2}>
-                  <Typography variant="body2" component="span">
-                    Bạn đã có tài khoản?{" "}
-                    <Typography
-                      variant="body2"
-                      component="span"
-                      onClick={() => {
-                        navigate("/login");
-                      }}
-                      sx={{ cursor: "pointer" }}
-                    >
-                      Đăng nhập ngay
-                    </Typography>
-                  </Typography>
-                </Stack>
-              </Box>
-            </Stack>
-          </Container>
+            </Container>
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </Helmet>
   );
 };
 export default Register;

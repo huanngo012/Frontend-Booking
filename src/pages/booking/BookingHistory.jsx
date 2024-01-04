@@ -37,27 +37,33 @@ const BookingHistory = () => {
     dispatch(getBookings());
   }, [successAction]);
   useEffect(() => {
-    setRows(
+    const newBookings =
       bookings &&
-        bookings?.map((el, index) => {
-          return {
-            id: el._id,
-            idRow: index + 1,
-            namePatient: el?.patientID?.fullName,
-            gender: el?.patientID?.gender,
-            nameClinic: el?.scheduleID?.doctorID?.clinicID?.name,
-            addressClinic: el?.scheduleID?.doctorID?.clinicID?.address,
-            nameSpecialty: el?.scheduleID?.doctorID?.specialtyID?.name,
-            nameDoctor: el?.scheduleID?.doctorID?._id?.fullName,
-            status: el?.status,
-            date: moment(el?.scheduleID.date).format("DD/MM/yyyy"),
-            description: el?.description,
-            time: times[el?.time - 1].value,
-            images: el?.images,
-            isPaid: el?.isPaid,
-          };
-        })
-    );
+      bookings?.map((el, index) => {
+        return {
+          id: el._id,
+          idRow: index + 1,
+          namePatient: el?.patientID?.fullName,
+          gender: el?.patientID?.gender,
+          nameClinic: el?.scheduleID?.doctorID?.clinicID?.name,
+          addressClinic: el?.scheduleID?.doctorID?.clinicID?.address,
+          nameSpecialty: el?.scheduleID?.doctorID?.specialtyID?.name,
+          nameDoctor: el?.scheduleID?.doctorID?._id?.fullName,
+          status: el?.status,
+          date: moment(el?.scheduleID.date).format("DD/MM/yyyy"),
+          description: el?.description,
+          time: times[el?.time - 1].value,
+          images: el?.images,
+          isPaid: el?.isPaid,
+        };
+      });
+    newBookings.sort((a, b) => {
+      const dateA = moment(a.date, "DD/MM/yyyy");
+      const dateB = moment(b.date, "DD/MM/yyyy");
+      return dateB - dateA;
+    });
+
+    setRows(newBookings);
   }, [totalItem, bookings]);
 
   const actionColumn = [

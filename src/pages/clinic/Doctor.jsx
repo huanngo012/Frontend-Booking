@@ -93,10 +93,10 @@ const Doctor = ({ data }) => {
   return (
     <Box className="doctor-clinic-detail">
       <Box className="doctor-clinic-detail-1">
-        <Box className="doctorImgBox">
+        <Box>
           <img
             src="https://png.pngtree.com/png-vector/20221006/ourlarge/pngtree-chibi-doctor-kids-cute-boy-png-image_6288993.png"
-            className="doctorImg"
+            className="doctor-img"
             alt=""
           />
         </Box>
@@ -108,7 +108,7 @@ const Doctor = ({ data }) => {
             <Typography
               variant="body2"
               dangerouslySetInnerHTML={{ __html: data?.description }}
-              className="truncate"
+              className="truncate_2"
             />
           </Box>
           <Box sx={{ flex: 1 }}>

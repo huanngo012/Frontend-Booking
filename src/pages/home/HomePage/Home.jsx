@@ -3,10 +3,11 @@ import Featured from "../Featured/Featured";
 import "./style.scss";
 import PopularDoctor from "../PopularDoctor/PopularDoctor";
 import PopularClinic from "../PopularClinic/PopularClinic";
+import { Helmet } from "../../../components";
 
 const Home = () => {
   return (
-    <>
+    <Helmet title="Trang chủ">
       <div className="homeContainer">
         <Featured />
         <Typography variant="h4" className="homeTitle">
@@ -22,7 +23,7 @@ const Home = () => {
           <PopularClinic />
         </Box>
       </div>
-    </>
+    </Helmet>
   );
 };
 

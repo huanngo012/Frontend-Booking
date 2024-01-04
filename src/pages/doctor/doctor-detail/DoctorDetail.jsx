@@ -5,7 +5,7 @@ import "./style.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import * as apis from "../../../apis";
-import { Popup, SelectDate } from "../../../components";
+import { Helmet, Popup, SelectDate } from "../../../components";
 import { formatMoney } from "../../../utils/helper";
 import { times } from "../../../utils/contants";
 import { addBooking } from "../../../store/booking/asyncAction";
@@ -99,7 +99,6 @@ const DoctorDetail = () => {
     dispatch(addBooking({ scheduleID: schedule?._id, time }));
     setOpenPopUp(false);
   };
-
   useEffect(() => {
     if (successAction || errorAction) {
       displayNotification({
@@ -112,139 +111,141 @@ const DoctorDetail = () => {
   }, [successAction, errorAction]);
 
   return (
-    <Box className="doctorDetail">
-      <Box className="doctorInfor">
-        <Box className="doctorImgBox">
-          <img
-            src="https://png.pngtree.com/png-vector/20221006/ourlarge/pngtree-chibi-doctor-kids-cute-boy-png-image_6288993.png"
-            className="doctorImg"
-            alt=""
-          />
-        </Box>
-        <Box className="doctorDescription">
-          <Box sx={{ flex: 1 }}>
-            <Typography variant="h5">{doctor?._id?.fullName}</Typography>
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <Typography
-              variant="body2"
-              dangerouslySetInnerHTML={{ __html: doctor?.description }}
-              className="truncate"
+    <Helmet title="Chi tiết bác sĩ">
+      <Box className="doctorDetail">
+        <Box className="doctorInfor">
+          <Box className="doctorImgBox">
+            <img
+              src="https://png.pngtree.com/png-vector/20221006/ourlarge/pngtree-chibi-doctor-kids-cute-boy-png-image_6288993.png"
+              className="doctorImg"
+              alt=""
             />
           </Box>
-        </Box>
-      </Box>
-      <Box className="doctorSchedule">
-        <Box className="schedule">
-          <Box className="datePicker">
-            <SelectDate
-              label="Chọn ngày:"
-              value={date}
-              setValue={setDate}
-              nameKey="date"
-            />
-          </Box>
-          <Box className="calendar">
-            <CalendarMonthIcon />
-            <Typography variant="body2">Lịch khám</Typography>
-          </Box>
-          {Object.keys(schedule).length > 0 ? (
-            <Box className="boxSchedule">
-              {schedule?.timeType?.map((el, index) => (
-                <Box key={index} sx={{ width: "33,333%", padding: "10px" }}>
-                  <Button
-                    variant={"outlined"}
-                    sx={{ width: "150px" }}
-                    onClick={(e) => handleCheckLogin(e, el?.time)}
-                  >
-                    <Typography variant="label3">
-                      {times[el?.time - 1].value}
-                    </Typography>
-                  </Button>
-                </Box>
-              ))}
+          <Box className="doctorDescription">
+            <Box sx={{ flex: 1 }}>
+              <Typography variant="h5">{doctor?._id?.fullName}</Typography>
             </Box>
-          ) : (
-            <Typography sx={{ alignSelf: "center" }}>
-              Không có lịch khám
-            </Typography>
-          )}
-        </Box>
-        <Box className="address">
-          <Typography variant="label1" sx={{ marginBottom: "10px" }}>
-            {doctor?.clinicID?.name}
-          </Typography>
-          <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <Typography variant="label2">Địa chỉ khám:</Typography>
-            <Typography variant="body2">
-              {doctor?.clinicID?.address?.detail
-                ? `${doctor?.clinicID?.address?.detail},`
-                : ""}{" "}
-              {doctor?.clinicID?.address?.ward
-                ? `${doctor?.clinicID?.address?.ward},`
-                : ""}{" "}
-              {doctor?.clinicID?.address?.district
-                ? `${doctor?.clinicID?.address?.district},`
-                : ""}
-              {doctor?.clinicID?.address?.province}
-            </Typography>
-          </Box>
-          <Box sx={{ padding: "10px 0" }} />
-          <Box sx={{ display: "flex", gap: "10px" }}>
-            <Typography variant="body1">Giá khám: </Typography>
-            <Typography variant="body2">
-              {schedule?.cost ? `${formatMoney(schedule?.cost)} VNĐ` : "---"}
-            </Typography>
+            <Box sx={{ flex: 1 }}>
+              <Typography
+                variant="body2"
+                dangerouslySetInnerHTML={{ __html: doctor?.description }}
+                className="truncate_2"
+              />
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <Box className="right">
-        <Typography variant="body2">Bình luận</Typography>
-        <Box
-          sx={{
-            display: "flex",
-            marginTop: "10px",
-            gap: "20px",
-            alignItems: "center",
-          }}
-        >
-          <TextField
-            type="text"
-            // value={comment}
-            placeholder="Bình luận"
-            // onChange={(e) => setComment(e.target.value)}
-            sx={{ width: "100%", flex: "11" }}
-          />
-          <Button
-            className="button"
-            variant="contained"
-            sx={{ flex: "1", height: "44px" }}
-            onClick={() => handleComment()}
+        <Box className="doctorSchedule">
+          <Box className="schedule">
+            <Box className="datePicker">
+              <SelectDate
+                label="Chọn ngày:"
+                value={date}
+                setValue={setDate}
+                nameKey="date"
+              />
+            </Box>
+            <Box className="calendar">
+              <CalendarMonthIcon />
+              <Typography variant="body2">Lịch khám</Typography>
+            </Box>
+            {Object.keys(schedule).length > 0 ? (
+              <Box className="boxSchedule">
+                {schedule?.timeType?.map((el, index) => (
+                  <Box key={index} sx={{ width: "33,333%", padding: "10px" }}>
+                    <Button
+                      variant={"outlined"}
+                      sx={{ width: "150px" }}
+                      onClick={(e) => handleCheckLogin(e, el?.time)}
+                    >
+                      <Typography variant="label3">
+                        {times[el?.time - 1].value}
+                      </Typography>
+                    </Button>
+                  </Box>
+                ))}
+              </Box>
+            ) : (
+              <Typography sx={{ alignSelf: "center" }}>
+                Không có lịch khám
+              </Typography>
+            )}
+          </Box>
+          <Box className="address">
+            <Typography variant="label1" sx={{ marginBottom: "10px" }}>
+              {doctor?.clinicID?.name}
+            </Typography>
+            <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <Typography variant="label2">Địa chỉ khám:</Typography>
+              <Typography variant="body2">
+                {doctor?.clinicID?.address?.detail
+                  ? `${doctor?.clinicID?.address?.detail},`
+                  : ""}{" "}
+                {doctor?.clinicID?.address?.ward
+                  ? `${doctor?.clinicID?.address?.ward},`
+                  : ""}{" "}
+                {doctor?.clinicID?.address?.district
+                  ? `${doctor?.clinicID?.address?.district},`
+                  : ""}
+                {doctor?.clinicID?.address?.province}
+              </Typography>
+            </Box>
+            <Box sx={{ padding: "10px 0" }} />
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Typography variant="body1">Giá khám: </Typography>
+              <Typography variant="body2">
+                {schedule?.cost ? `${formatMoney(schedule?.cost)} VNĐ` : "---"}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box className="right">
+          <Typography variant="body2">Bình luận</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              marginTop: "10px",
+              gap: "20px",
+              alignItems: "center",
+            }}
           >
-            Bình luận
-          </Button>
-        </Box>
-        {/* {doctor?.comments?.map((el, index) => (
+            <TextField
+              type="text"
+              // value={comment}
+              placeholder="Bình luận"
+              // onChange={(e) => setComment(e.target.value)}
+              sx={{ width: "100%", flex: "11" }}
+            />
+            <Button
+              className="button"
+              variant="contained"
+              sx={{ flex: "1", height: "44px" }}
+              onClick={() => handleComment()}
+            >
+              Bình luận
+            </Button>
+          </Box>
+          {/* {doctor?.comments?.map((el, index) => (
           <Comment name="Ngô Công Huân" comment={el} key={index} />
         ))} */}
+        </Box>
+        <Popup
+          open={openPopUp}
+          handleClose={handleCloseConfirmPopUp}
+          title={"Bạn có muốn đặt lịch?"}
+          message={`Giờ: ${times[time - 1]?.value}`}
+          enableCancelButton
+          onClick={handleBooking}
+        />
+        <Popup
+          open={openPopUpLogin}
+          handleClose={handleCloseConfirmPopUpLogin}
+          title={"Đăng nhập trước khi đặt lịch"}
+          message={`Bạn có muốn đăng nhập không???`}
+          enableCancelButton
+          onClick={() => navigate("/login")}
+        />
       </Box>
-      <Popup
-        open={openPopUp}
-        handleClose={handleCloseConfirmPopUp}
-        title={"Bạn có muốn đặt lịch?"}
-        message={`Giờ: ${times[time - 1]?.value}`}
-        enableCancelButton
-        onClick={handleBooking}
-      />
-      <Popup
-        open={openPopUpLogin}
-        handleClose={handleCloseConfirmPopUpLogin}
-        title={"Đăng nhập trước khi đặt lịch"}
-        message={`Bạn có muốn đăng nhập không???`}
-        enableCancelButton
-        onClick={() => navigate("/login")}
-      />
-    </Box>
+    </Helmet>
   );
 };
 
