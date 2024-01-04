@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import "./style.scss";
 import SearchIcon from "@mui/icons-material/Search";
+import useDebounce from "../../hooks/useDebounce";
 import {
   Box,
   Button,
@@ -11,49 +12,74 @@ import {
   TextField,
   InputAdornment,
 } from "@mui/material";
+import { getClinics } from "../../store/clinics/asyncAction";
+import { resetClinicStatus } from "../../store/clinics/clinicSlice";
 
 const ClinicList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { clinics, successAction, errorAction } = useSelector(
+    (state) => state.clinic
+  );
   const [searchLabel, setSearchLabel] = useState(null);
+  const [clinicsSearch, setClinicsSearch] = useState([]);
+
+  const debounceSearchLabel = useDebounce(searchLabel, 700);
+  useEffect(() => {
+    dispatch(getClinics({ name: searchLabel }));
+  }, [debounceSearchLabel]);
+  useEffect(() => {
+    setClinicsSearch(clinics);
+  }, [clinics]);
+
+  useEffect(() => {
+    if (successAction || errorAction) {
+      if (errorAction) {
+        setClinicsSearch([]);
+      }
+      dispatch(resetClinicStatus());
+    }
+  }, [successAction, errorAction]);
+
   return (
     <Box className="boxDoctorList">
-        <Box className="headerSearch">
-          <TextField
-            type="text"
-            placeholder="Nhập tên bác sĩ"
-            className="headerSearchInput"
-            onChange={(e) => setSearchLabel(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon/>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Box>
-        <Box className="doctorCard" key={''}>
+      <Box className="headerSearch">
+        <TextField
+          type="text"
+          placeholder="Nhập tên bác sĩ"
+          className="headerSearchInput"
+          onChange={(e) => setSearchLabel(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
+      {clinicsSearch?.length > 0 ? (
+        clinicsSearch?.map((el, index) => (
+          <Box className="doctorCard" key={""}>
             <Box className="doctorCardHeader">
               <Box className="doctorImgBox">
-                <img
-                  src="https://png.pngtree.com/png-vector/20221006/ourlarge/pngtree-chibi-doctor-kids-cute-boy-png-image_6288993.png"
-                  className="doctor-img"
-                  alt=""
-                />
+                <img src={el?.image} className="doctor-img" alt="" />
               </Box>
               <Box className="doctorDescription">
                 <Box sx={{ flex: 1 }}>
-                  <Typography variant="h5">
-                    Bệnh viện Đại học Y dược TP.HCM
+                  <Typography variant="h5">{el?.name}</Typography>
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <Typography variant="body3">
+                    {el?.address?.detail ? `${el?.address?.detail},` : ""}{" "}
+                    {el?.address?.ward ? `${el?.address?.ward},` : ""}{" "}
+                    {el?.address?.district ? `${el?.address?.district},` : ""}
+                    {el?.address?.province}
                   </Typography>
                 </Box>
                 <Box sx={{ flex: 1 }}>
                   <Typography variant="body3">
-                    Số 215, đường Hồng Bàng, Phường 11, Quận 5,Thành phố Hồ Chí Minh
-                  </Typography>
-                  <Typography variant="body3">
-                    Bệnh viện có 10 bác sĩ thuộc nhiều chuyên khoa
+                    Mô tả: {el?.description}
                   </Typography>
                 </Box>
               </Box>
@@ -63,17 +89,20 @@ const ClinicList = () => {
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    navigate(`/doctor-detail/`);
+                    navigate(`/clinic-detail/${el?._id}`);
                   }}
                 >
                   Xem chi tiết
                 </Button>
               </Box>
             </Box>
-        </Box>
+          </Box>
+        ))
+      ) : (
+        <Box>Không tìm thấy bệnh viện</Box>
+      )}
     </Box>
+  );
+};
 
-  )
-}
-
-export default ClinicList
+export default ClinicList;

@@ -102,7 +102,7 @@ const DoctorList = () => {
             </Box>
           ))
         ) : (
-          <Box>Không tim thấy bác sĩ</Box>
+          <Box>Không tìm thấy bác sĩ</Box>
         )}
       </Box>
     </Helmet>
