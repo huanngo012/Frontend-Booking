@@ -26,7 +26,11 @@ const ClinicList = () => {
 
   const debounceSearchLabel = useDebounce(searchLabel, 700);
   useEffect(() => {
-    dispatch(getClinics({ name: searchLabel }));
+    if (searchLabel !== "") {
+      dispatch(getClinics({ name: searchLabel }));
+    } else {
+      dispatch(getClinics());
+    }
   }, [debounceSearchLabel]);
   useEffect(() => {
     setClinicsSearch(clinics);
@@ -34,6 +38,7 @@ const ClinicList = () => {
 
   useEffect(() => {
     if (successAction || errorAction) {
+      console.log(errorAction);
       if (errorAction) {
         setClinicsSearch([]);
       }
@@ -46,7 +51,7 @@ const ClinicList = () => {
       <Box className="headerSearch">
         <TextField
           type="text"
-          placeholder="Nhập tên bác sĩ"
+          placeholder="Nhập tên bệnh viện"
           className="headerSearchInput"
           onChange={(e) => setSearchLabel(e.target.value)}
           InputProps={{
@@ -60,7 +65,7 @@ const ClinicList = () => {
       </Box>
       {clinicsSearch?.length > 0 ? (
         clinicsSearch?.map((el, index) => (
-          <Box className="doctorCard" key={""}>
+          <Box className="doctorCard" key={index}>
             <Box className="doctorCardHeader">
               <Box className="doctorImgBox">
                 <img src={el?.image} className="doctor-img" alt="" />

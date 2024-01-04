@@ -25,7 +25,7 @@ export const clinicSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(actions.getClinics.rejected, (state, action) => {
-      state.errorAction = action.message;
+      state.errorAction = action.payload.data;
       state.loading = false;
     });
   },
