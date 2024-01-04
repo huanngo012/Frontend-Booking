@@ -87,32 +87,25 @@ const BookingHistory = () => {
             {params.row?.status !== "Đã hủy" && (
               <>
                 <DetailBooking data={params.row} />
-                <Button
-                  variant="contained"
-                  color="red"
-                  onClick={(e) => {
-                    handleOpenConfirmPopup(e);
-                    setId(params.row.id);
-                    setTime(params.row.time);
-                  }}
-                >
-                  <Typography variant="button1">Hủy</Typography>
-                </Button>
-                <Button
-                  variant="contained"
-                  disabled={params?.row?.isPaid === false ? false : true}
-                >
-                  <Typography variant="button1">
-                    {params?.row?.isPaid === false
-                      ? "Thanh toán"
-                      : "Đã thanh toán"}
-                  </Typography>
-                </Button>
+                {params.row?.status === "Đang xử lý" && (
+                  <Button
+                    variant="contained"
+                    color="red"
+                    onClick={(e) => {
+                      handleOpenConfirmPopup(e);
+                      setId(params.row.id);
+                      setTime(params.row.time);
+                    }}
+                  >
+                    <Typography variant="button1">Hủy</Typography>
+                  </Button>
+                )}
               </>
             )}
           </Box>
         );
       },
+
     },
   ];
   const actionDoctorColumn = [
