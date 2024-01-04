@@ -108,7 +108,13 @@ const NavBar = () => {
         </div>
         <div className="headerListItem">
           <LocalHospitalIcon />
-          <span>Bệnh viện</span>
+          <span
+            onClick={() => {
+              navigate("/clinic-list");
+            }}
+          >
+            Bệnh viện
+          </span>
         </div>
         <div
           className="headerListItem"

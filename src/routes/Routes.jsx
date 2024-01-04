@@ -9,6 +9,7 @@ import DefaultLayout from "../layout/DefaultLayout";
 import Layout2 from "../layout/Layout2";
 import BookingHistory from "../pages/booking/BookingHistory";
 import ClinicDetail from "../pages/clinic/ClinicDetail";
+import ClinicList from "../pages/clinic/ClinicList";
 
 const routes = {
   home: "/",
@@ -18,6 +19,7 @@ const routes = {
   doctorList: "doctor-list",
   bookingsHistory: "booking-history",
   clinicDetail: "clinic-detail/:id",
+  clinicList: "clinic-list"
 };
 
 export const privateRoutes = [];
@@ -30,6 +32,8 @@ export const publicRoutes = [
   { path: routes.doctorList, component: DoctorList, layout: DefaultLayout },
   { path: routes.doctorDetail, component: DoctorDetail, layout: Layout2 },
   { path: routes.bookingsHistory, component: BookingHistory, layout: Layout2 },
+  { path: routes.clinicList, component: ClinicList, layout: DefaultLayout },
+
 ];
 
 export const IsLogin = () => {
